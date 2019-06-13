@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MessageList from './components/MessageList';
+
 
 const API = 'https://fierce-wave-29955.herokuapp.com/messages';
 
@@ -22,7 +23,7 @@ class App extends Component {
     }
   }
 
-  async postMess = (data) => {
+   postMess = async (data) => {
     let response = await fetch(API, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -45,7 +46,7 @@ class App extends Component {
     }
   }
 
-  async deleteMess = (id) => {
+   deleteMess = async (id) => {
     const response = await fetch(`${API}, ${id}`, {
       method: 'DELETE',
       headers: {
@@ -64,9 +65,11 @@ class App extends Component {
     }
   }
 
-  async patchMess = () => {
-    let response = await fetch(API, {})
-  }
+  //  patchMess = async () => {
+  //   let response = await fetch(API, {
+  //
+  //   })
+  // }
 
   composeToggle = () => {
     this.state.formHidden === 'hidden'
@@ -77,7 +80,9 @@ class App extends Component {
   render() {
     console.log(this.state.messages)
     return (<div className="container">
-      <h1>Its time for another react thing!</h1>
+      <h1 className="title">Its time for another react thing!</h1>
+      <h3 className="message"> Your Message </h3>
+      <MessageList messages={this.state.messages}/>
     </div>)
   }
 }
